@@ -1,7 +1,7 @@
 from aws_cdk import (
     NestedStack as NestedStack,
     aws_ec2 as ec2,
-    
+    aws_s3 as s3,
 )
 
 from constructs import Construct
@@ -26,5 +26,15 @@ class SkeletonStack(NestedStack):
                     'name': 'private',
                     'subnetType': ec2.SubnetType.PRIVATE_WITH_NAT
                 }
-            ]
+            ],
+        
         )
+
+        self.bucket = s3.Bucket(self, 'SkeletonBucket',
+                           
+                            versioned=True,
+                                 )
+
+        
+
+        
