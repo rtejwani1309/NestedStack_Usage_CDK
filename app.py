@@ -12,7 +12,7 @@ from nested_stack.app_stack import AppStack
 
 app = cdk.App()
 
-main_stack = cdk.Stack(app, 'MainStack', env={'account': '860278712199','region': 'us-west-2'})
+main_stack = cdk.Stack(app, 'MainStack', env={'account': '<account-id>','region': 'us-west-2'})
 
 skeleton = SkeletonStack(main_stack, 'skeleton')
 
