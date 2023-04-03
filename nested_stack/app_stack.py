@@ -33,5 +33,19 @@ class AppStack (NestedStack):
             )]
         )
 
-        print(new_policy._get_resource_arn_attribute)
+        # print(new_policy._get_resource_arn_attribute)
         # print(bucket)
+        role = iam.Role(self, "Role",
+    assumed_by=iam.CompositePrincipal(iam.ServicePrincipal("gamelift.amazonaws.com"))
+)
+        
+        role.add_managed_policy(new_policy)
+        
+        self.kms_policy = iam.PolicyDocument(
+    statements=[iam.PolicyStatement(
+        actions=["kms:Create*", "kms:Describe*", "kms:Enable*", "kms:List*", "kms:Put*"
+        ],
+        principals=[iam.AccountRootPrincipal()],
+        resources=["*"]
+    )]
+)
